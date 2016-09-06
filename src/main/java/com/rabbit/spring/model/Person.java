@@ -20,8 +20,8 @@ public class Person {
 	private String name;
 	@Column(nullable = false)
 	private Integer age;
-	@Column(nullable = false)
-	private Boolean isMan;
+	@Column(nullable = false, columnDefinition = "TINYINT(1)")
+	private Boolean man;
 	public Long getId() {
 		return id;
 	}
@@ -40,10 +40,10 @@ public class Person {
 	public void setAge(Integer age) {
 		this.age = age;
 	}
-	public Boolean isMan() {
-		return isMan;
+	public Boolean getMan() {
+		return man;
 	}
-	public void setMan(Boolean isMan) {
-		this.isMan = isMan;
+	public void setMan(Boolean man) {
+		this.man = man;
 	}
 }

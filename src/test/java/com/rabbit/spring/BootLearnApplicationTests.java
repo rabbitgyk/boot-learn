@@ -11,6 +11,8 @@ public class BootLearnApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		
+		System.out.println("spring boot is start");
 	}
 
 }
