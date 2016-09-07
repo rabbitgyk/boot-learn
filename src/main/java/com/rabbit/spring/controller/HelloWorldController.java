@@ -2,7 +2,6 @@ package com.rabbit.spring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSONObject;
@@ -17,7 +16,6 @@ public class HelloWorldController {
 	private PersonRepository personRepository;
 
 	@RequestMapping("/person")
-	@ResponseBody
 	public String hello(String name){
 		Person person = new Person();
 		person.setAge(11);
@@ -27,9 +25,8 @@ public class HelloWorldController {
 	}
 	
 	@RequestMapping("/db/person")
-	@ResponseBody
-	public String helloDB(String name){
+	public Person helloDB(String name){
 		Person person = personRepository.findByName(name);
-		return JSONObject.toJSONString(person);
+		return person;
 	}
 }
