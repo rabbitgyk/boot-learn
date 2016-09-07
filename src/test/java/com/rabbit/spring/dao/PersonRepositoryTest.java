@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.alibaba.fastjson.JSONObject;
@@ -58,11 +59,18 @@ public class PersonRepositoryTest {
 	}
 	
 	@Test
+	public void testFindAllSort(){
+		Sort sort = new Sort("man");
+		List<Person> list = personRepository.findAll(sort);
+		System.out.println(JSONObject.toJSONString(list));
+	}
+	
+	@Test
 	public void testFindByMan(){
 		Pageable pageable = new PageRequest(0, 10);
 		Page<Person> per = personRepository.findByMan(true, pageable);
 		
-		System.out.println(JSONObject.toJSONString(per.getContent()));
+		System.out.println(JSONObject.toJSONString(per));
 	}
 
 }
