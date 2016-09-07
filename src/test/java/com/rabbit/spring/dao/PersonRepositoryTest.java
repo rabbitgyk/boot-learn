@@ -7,6 +7,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -71,6 +73,29 @@ public class PersonRepositoryTest {
 		Page<Person> per = personRepository.findByMan(true, pageable);
 		
 		System.out.println(JSONObject.toJSONString(per));
+	}
+	
+	@Test
+	public void testFindByExample(){
+		Person person = new Person();
+//		person.setName("zhangsan2");
+		person.setMan(false);
+		Example<Person> example = Example.of(person);
+		List<Person> list = personRepository.findAll(example);
+		System.out.println(JSONObject.toJSONString(list));
+	}
+	
+	@Test
+	public void testFindByExample2(){
+		Person person = new Person();
+		person.setName("zhangsan");
+		person.setMan(false);
+		
+		ExampleMatcher matcher = ExampleMatcher.matching()
+				.withIgnorePaths("man");
+		Example<Person> example = Example.of(person, matcher);
+		List<Person> list = personRepository.findAll(example);
+		System.out.println(JSONObject.toJSONString(list));
 	}
 
 }
