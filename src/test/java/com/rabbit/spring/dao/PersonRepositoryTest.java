@@ -97,5 +97,11 @@ public class PersonRepositoryTest {
 		List<Person> list = personRepository.findAll(example);
 		System.out.println(JSONObject.toJSONString(list));
 	}
+	
+	@Test
+	public void testFindPersons(){
+		List<Person> list = personRepository.findPersons(90);
+		System.out.println(JSONObject.toJSONString(list));
+	}
 
 }
